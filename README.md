@@ -1,73 +1,83 @@
-# Welcome to your Lovable project
+# Ritu — A Gentle Cycle Tracker
 
-## Project info
+Ritu is a **privacy-first, rule-based menstrual cycle tracker** designed to help users understand their cycle in a calm, respectful, and non-clinical way. The project focuses on clarity and awareness rather than medical predictions, making it suitable for everyday self-tracking without overwhelm.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## 🌸 Problem Statement
 
-There are several ways of editing your application.
+Many existing period tracking apps feel overwhelming, overly clinical, or make strong predictive claims that can cause unnecessary anxiety. There is a need for a **simple and gentle tool** that allows users to track their cycle, notice patterns, and build awareness — without medical language or intrusive features.
 
-**Use Lovable**
+Ritu addresses this by providing a clean interface, transparent logic, and complete local data storage.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## ✨ Features
 
-**Use your preferred IDE**
+* Track last period start date, average cycle length, and period length
+* Automatically calculates:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+  * Current cycle day
+  * Estimated next period window (not a medical prediction)
+* Daily logging of:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+  * Mood (icon-based)
+  * Common symptoms (checkboxes)
+* History view to review past cycles and logs
+* Clean, modern UI with subtle interactions
+* **All data stored locally** — no accounts, no cloud storage
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🧠 Design & Ethical Approach
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+* Uses **rule-based date calculations**, not machine learning
+* Avoids medical claims, alarms, or fear-based language
+* Focuses on transparency, user trust, and respectful UX
+* Designed as a self-awareness tool, not a diagnostic or medical application
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🛠️ Tech Stack
+
+* Frontend: React
+* Language: TypeScript
+* Styling: Tailwind CSS
+* State & Persistence: LocalStorage
+
+---
+
+## 📦 Setup & Installation
+
+```bash
+# clone the repository
+git clone https://github.com/<your-username>/ritu.git
+
+# navigate into the project
+cd ritu
+
+# install dependencies
+npm install
+
+# run the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🚀 Future Improvements
 
-**Use GitHub Codespaces**
+* Optional data export for personal records
+* Gentle insights based on long-term trends
+* Accessibility improvements
+* Optional reminders (user-controlled)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## 📝 Disclaimer
 
-This project is built with:
+Ritu is **not a medical device** and does not provide medical advice or guaranteed predictions. All calculations are estimations based on user-provided inputs and are intended for personal awareness only.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Built with care to emphasize empathy, responsibility, and thoughtful design.
