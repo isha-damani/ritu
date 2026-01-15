@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+@layer base {
+  :root {
+    /* Warm, calming palette */
+    --background: 40 33% 98%;
+    --foreground: 30 10% 25%;
+
+    --card: 40 30% 99%;
+    --card-foreground: 30 10% 25%;
+
+    --popover: 40 30% 99%;
+    --popover-foreground: 30 10% 25%;
+
+    /* Dusty rose - muted and elegant */
+    --primary: 350 30% 65%;
+    --primary-foreground: 40 33% 99%;
+
+    /* Warm cream secondary */
+    --secondary: 35 25% 94%;
+    --secondary-foreground: 30 10% 35%;
+
+    --muted: 35 20% 92%;
+    --muted-foreground: 30 8% 50%;
+
+    /* Soft sage accent */
+    --accent: 140 15% 90%;
+    --accent-foreground: 140 20% 30%;
+
+    --destructive: 0 60% 60%;
+    --destructive-foreground: 40 33% 99%;
+
+    --border: 35 20% 88%;
+    --input: 35 20% 90%;
+    --ring: 350 25% 70%;
+
+    --radius: 1rem;
+
+    /* Custom Ritu tokens */
+    --ritu-blush: 350 35% 75%;
+    --ritu-blush-soft: 350 30% 92%;
+    --ritu-cream: 40 40% 97%;
+    --ritu-sage: 140 20% 88%;
+    --ritu-sage-deep: 140 25% 45%;
+    --ritu-warm-gray: 30 8% 60%;
+    --ritu-text: 30 10% 25%;
+    --ritu-text-soft: 30 8% 45%;
+
+    /* Period colors - muted hot pink / dusty rose */
+    --period: 345 45% 55%;
+    --period-foreground: 40 33% 99%;
+    --period-predicted: 345 35% 75%;
+
+    /* Flow tracking shades - gradient from light to deep pink */
+    --flow-spotting: 350 25% 80%;
+    --flow-light: 345 35% 72%;
+    --flow-medium: 340 45% 60%;
+    --flow-heavy: 335 50% 48%;
+
+    /* Shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(30 10% 25% / 0.06), 0 4px 16px -4px hsl(30 10% 25% / 0.08);
+    --shadow-card: 0 1px 3px hsl(30 10% 25% / 0.04), 0 4px 12px -2px hsl(30 10% 25% / 0.06);
+    --shadow-elevated: 0 4px 20px -4px hsl(30 10% 25% / 0.1), 0 8px 32px -8px hsl(30 10% 25% / 0.12);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 30 10% 10%;
+    --foreground: 40 20% 92%;
+    --card: 30 10% 12%;
+    --card-foreground: 40 20% 92%;
+    --popover: 30 10% 12%;
+    --popover-foreground: 40 20% 92%;
+    --primary: 350 35% 70%;
+    --primary-foreground: 30 10% 10%;
+    --secondary: 30 10% 18%;
+    --secondary-foreground: 40 20% 90%;
+    --muted: 30 8% 20%;
+    --muted-foreground: 35 12% 60%;
+    --accent: 140 15% 20%;
+    --accent-foreground: 140 20% 85%;
+    --destructive: 0 55% 50%;
+    --destructive-foreground: 40 33% 99%;
+    --border: 30 8% 22%;
+    --input: 30 8% 22%;
+    --ring: 350 30% 65%;
+    
+    --ritu-blush: 350 30% 60%;
+    --ritu-blush-soft: 350 20% 18%;
+    --ritu-cream: 30 10% 14%;
+    --ritu-sage: 140 15% 18%;
+    --ritu-sage-deep: 140 25% 60%;
+    --ritu-warm-gray: 30 8% 55%;
+    --ritu-text: 40 20% 92%;
+    --ritu-text-soft: 35 12% 65%;
+
+    /* Period colors - darker theme versions */
+    --period: 345 40% 45%;
+    --period-foreground: 40 20% 95%;
+    --period-predicted: 345 30% 35%;
+
+    /* Flow tracking shades - darker theme, more vibrant */
+    --flow-spotting: 350 45% 65%;
+    --flow-light: 345 55% 70%;
+    --flow-medium: 340 60% 65%;
+    --flow-heavy: 335 65% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-semibold tracking-tight;
+    color: hsl(var(--ritu-text));
+  }
+}
+
+@layer components {
+  .ritu-card {
+    @apply bg-card rounded-2xl p-6 transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+
+  .ritu-card:hover {
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-1px);
+  }
+
+  .ritu-card-static {
+    @apply bg-card rounded-2xl p-6;
+    box-shadow: var(--shadow-card);
+  }
+
+  .ritu-button-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-200;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .ritu-button-primary:hover {
+    background: hsl(350 35% 60%);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .ritu-button-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all duration-200;
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+
+  .ritu-button-secondary:hover {
+    background: hsl(35 25% 90%);
+  }
+
+  .ritu-input {
+    @apply w-full px-4 py-3 rounded-xl border bg-background transition-all duration-200 outline-none;
+    border-color: hsl(var(--border));
+  }
+
+  .ritu-input:focus {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 3px hsl(var(--ritu-blush-soft));
+  }
+
+  .ritu-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    background: hsl(var(--ritu-blush-soft));
+    color: hsl(350 30% 45%);
+  }
+
+  .ritu-badge-sage {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    background: hsl(var(--ritu-sage));
+    color: hsl(var(--ritu-sage-deep));
+  }
+
+  .ritu-progress-ring {
+    @apply relative flex items-center justify-center;
+  }
+
+  .ritu-section-title {
+    @apply text-lg font-semibold mb-4;
+    color: hsl(var(--ritu-text));
+  }
+
+  .ritu-label {
+    @apply text-sm font-medium mb-2 block;
+    color: hsl(var(--ritu-text-soft));
+  }
+}
+
+@layer utilities {
+  .text-ritu {
+    color: hsl(var(--ritu-text));
+  }
+
+  .text-ritu-soft {
+    color: hsl(var(--ritu-text-soft));
+  }
+
+  .bg-ritu-cream {
+    background: hsl(var(--ritu-cream));
+  }
+
+  .bg-ritu-blush-soft {
+    background: hsl(var(--ritu-blush-soft));
+  }
+
+  .bg-ritu-sage {
+    background: hsl(var(--ritu-sage));
+  }
+
+  .border-ritu-blush {
+    border-color: hsl(var(--ritu-blush));
+  }
+
+  /* Period colors */
+  .bg-period {
+    background: hsl(var(--period));
+  }
+
+  .text-period-foreground {
+    color: hsl(var(--period-foreground));
+  }
+
+  .bg-period-predicted {
+    background: hsl(var(--period-predicted));
+  }
+
+  /* Flow level colors */
+  .bg-flow-spotting {
+    background: hsl(var(--flow-spotting));
+  }
+
+  .bg-flow-light {
+    background: hsl(var(--flow-light));
+  }
+
+  .bg-flow-medium {
+    background: hsl(var(--flow-medium));
+  }
+
+  .bg-flow-heavy {
+    background: hsl(var(--flow-heavy));
+  }
+
+  .text-flow-spotting {
+    color: hsl(var(--flow-spotting));
+  }
+
+  .text-flow-light {
+    color: hsl(var(--flow-light));
+  }
+
+  .text-flow-medium {
+    color: hsl(var(--flow-medium));
+  }
+
+  .text-flow-heavy {
+    color: hsl(var(--flow-heavy));
+  }
+}
