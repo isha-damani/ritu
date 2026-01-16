@@ -16,6 +16,8 @@ Ritu addresses this by providing a clean interface, transparent logic, and compl
 Live Demo: A deployed, production-ready version of Ritu is available at  
 https://ritu-period-tracker.vercel.app/
 
+---
+
 ## ✨ Features
 
 * Track last period start date, average cycle length, and period length
