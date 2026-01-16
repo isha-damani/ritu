@@ -11,11 +11,22 @@ import {
 } from '@/lib/storage';
 
 interface CycleStatusProps {
-  settings: CycleSettings;
+  cycleDay: number | null;
+  phase: string | null;
+  nextPeriod: Date | null;
+  daysUntil: number | null;
+  progress: number;
 }
 
-export function CycleStatus({ settings }: CycleStatusProps) {
-  if (!settings.lastPeriodStart) {
+
+export function CycleStatus({
+  cycleDay,
+  phase,
+  nextPeriod,
+  daysUntil,
+  progress,
+}: CycleStatusProps) {
+  if (cycleDay==null) {
     return (
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -33,11 +44,7 @@ export function CycleStatus({ settings }: CycleStatusProps) {
     );
   }
 
-  const cycleDay = calculateCycleDay(settings.lastPeriodStart);
-  const nextPeriod = calculateNextPeriod(settings.lastPeriodStart, settings.averageCycleLength);
-  const daysUntil = getDaysUntil(nextPeriod);
-  const phase = getCyclePhase(cycleDay, settings.averageCycleLength);
-  const progress = (cycleDay / settings.averageCycleLength) * 100;
+  
 
   return (
     <motion.div 

@@ -41,14 +41,14 @@ export function CalendarView({ settings }: CalendarViewProps) {
       // Also add predicted periods (next 3 cycles)
       for (let cycle = 1; cycle <= 3; cycle++) {
         const cycleStart = new Date(startDate);
-        cycleStart.setDate(cycleStart.getDate() + (settings.averageCycleLength * cycle));
+        cycleStart.setDate(
+          cycleStart.getDate() + settings.averageCycleLength * cycle
+        );
+
         for (let i = 0; i < settings.averagePeriodLength; i++) {
           const date = new Date(cycleStart);
           date.setDate(date.getDate() + i);
-          // Mark as predicted only if in the future
-          if (date > new Date()) {
-            days.add(date.toISOString().split('T')[0]);
-          }
+          days.add(date.toISOString().split('T')[0]);
         }
       }
     }
@@ -104,9 +104,7 @@ export function CalendarView({ settings }: CalendarViewProps) {
     return periodDays.has(date.toISOString().split('T')[0]);
   };
 
-  const isFuturePrediction = (date: Date) => {
-    return isPeriodDay(date) && date > new Date();
-  };
+  
 
   const getFlowLevel = (date: Date) => {
     const dateStr = date.toISOString().split('T')[0];
@@ -167,7 +165,6 @@ export function CalendarView({ settings }: CalendarViewProps) {
       <div className="grid grid-cols-7 gap-1">
         {calendarDays.map((day, index) => {
           const isPeriod = isPeriodDay(day.date);
-          const isFuture = isFuturePrediction(day.date);
           const flowLevel = getFlowLevel(day.date);
           const logged = hasLog(day.date);
           
@@ -178,8 +175,7 @@ export function CalendarView({ settings }: CalendarViewProps) {
                 relative aspect-square flex items-center justify-center rounded-lg text-sm transition-all
                 ${!day.isCurrentMonth ? 'text-muted-foreground/40' : 'text-ritu'}
                 ${isToday(day.date) ? 'ring-2 ring-primary ring-offset-1 ring-offset-background font-semibold' : ''}
-                ${isPeriod && !isFuture ? 'bg-period text-period-foreground font-medium' : ''}
-                ${isFuture ? 'bg-period-predicted text-period-foreground/80' : ''}
+                ${isPeriod ? 'bg-period-predicted text-period-foreground font-medium' : ''}
               `}
               whileHover={{ scale: 1.05 }}
             >

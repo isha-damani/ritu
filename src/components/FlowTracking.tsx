@@ -50,18 +50,34 @@ export function FlowTracking({ onFlowSaved }: FlowTrackingProps) {
   }, []);
 
   const handleSave = () => {
-    if (!selectedFlow) return;
-    
     const today = new Date().toISOString().split('T')[0];
+  
+    // If user deselected flow, REMOVE existing log
+    if (selectedFlow === null) {
+      const stored = localStorage.getItem('ritu_flow_logs');
+      const logs: FlowLog[] = stored ? JSON.parse(stored) : [];
+  
+      const updatedLogs = logs.filter(log => log.date !== today);
+      localStorage.setItem('ritu_flow_logs', JSON.stringify(updatedLogs));
+  
+      setSaved(true);
+      onFlowSaved?.();
+      setTimeout(() => setSaved(false), 2000);
+      return;
+    }
+  
+    // Otherwise, save selected flow
     const log: FlowLog = {
       date: today,
       level: selectedFlow,
     };
+  
     saveFlowLog(log);
     setSaved(true);
     onFlowSaved?.();
     setTimeout(() => setSaved(false), 2000);
   };
+  
 
   return (
     <motion.div 
@@ -129,7 +145,7 @@ export function FlowTracking({ onFlowSaved }: FlowTrackingProps) {
 
       <motion.button
         onClick={handleSave}
-        disabled={!selectedFlow}
+        disabled={false}
         className="ritu-button-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
         whileTap={{ scale: 0.98 }}
       >

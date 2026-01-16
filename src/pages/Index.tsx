@@ -7,10 +7,44 @@ import { FlowTracking } from '@/components/FlowTracking';
 import { CalendarView } from '@/components/CalendarView';
 import { HistoryView } from '@/components/HistoryView';
 import { getSettings, saveSettings, type CycleSettings } from '@/lib/storage';
+import {
+  calculateCycleDay,
+  calculateNextPeriod,
+  getDaysUntil,
+  getCyclePhase,
+} from '@/lib/storage';
+
 
 const Index = () => {
   const [settings, setSettings] = useState<CycleSettings>(getSettings());
   const [historyRefreshKey, setHistoryRefreshKey] = useState(0);
+  useEffect(() => {
+    const storedSettings = getSettings();
+    setSettings(storedSettings);
+  }, []);
+  const cycleDay = settings.lastPeriodStart
+  ? calculateCycleDay(settings.lastPeriodStart)
+  : null;
+
+const nextPeriod = settings.lastPeriodStart
+  ? calculateNextPeriod(
+      settings.lastPeriodStart,
+      settings.averageCycleLength
+    )
+  : null;
+
+const daysUntil = nextPeriod ? getDaysUntil(nextPeriod) : null;
+
+const phase =
+  cycleDay !== null
+    ? getCyclePhase(cycleDay, settings.averageCycleLength)
+    : null;
+
+const progress =
+  cycleDay !== null
+    ? (cycleDay / settings.averageCycleLength) * 100
+    : 0;
+
 
   const handleSaveSettings = (newSettings: CycleSettings) => {
     saveSettings(newSettings);
@@ -28,7 +62,14 @@ const Index = () => {
         
         <main className="space-y-6">
           {/* Cycle Status - Main display */}
-          <CycleStatus settings={settings} />
+          <CycleStatus
+            cycleDay={cycleDay}
+            phase={phase}
+            nextPeriod={nextPeriod}
+            daysUntil={daysUntil}
+            progress={progress}
+          />
+
           
           {/* Calendar View */}
           <CalendarView settings={settings} />
